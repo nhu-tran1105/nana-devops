@@ -1,0 +1,23 @@
+{
+  "name": "nana-devops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhu-tran1105/nana-devops.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhu-tran1105/nana-devops/issues"
+  },
+  "homepage": "https://github.com/nhu-tran1105/nana-devops#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
