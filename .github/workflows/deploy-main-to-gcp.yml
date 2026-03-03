@@ -1,0 +1,40 @@
+name: Deploy Main to GCP
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Prepare SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy over SSH
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          APP_DIR:  ${{ vars.APP_DIR }}
+          PM2_NAME: ${{ vars.PM2_NAME }}
+        run: |
+          ssh -i ~/.ssh/id_rsa -tt "$SSH_USER@$SSH_HOST" <<EOF
+            set -e
+            cd "$APP_DIR"
+            git pull origin main
+            npm install
+            if pm2 list | grep -q "$PM2_NAME"; then
+              pm2 restart "$PM2_NAME"
+            else
+              pm2 start app.mjs --name "$PM2_NAME"
+            fi
+            pm2 save
+          EOF
