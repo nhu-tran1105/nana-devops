@@ -1,27 +1,28 @@
 {
-  "name": "fantastic-barnacle-devops",
+  "name": "nana-devops",
   "version": "1.0.0",
-  "description": "Spring 2026 CIS 486.",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node app.mjs",
+    "start": "node app.mjs",
+    "dev": "nodemon app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barrycumbie/fantastic-barnacle-devops.git"
+    "url": "git+https://github.com/nhu-tran1105/nana-devops.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Nhu Tran",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/barrycumbie/fantastic-barnacle-devops/issues"
+    "url": "https://github.com/nhu-tran1105/nana-devops/issues"
   },
-  "homepage": "https://github.com/barrycumbie/fantastic-barnacle-devops#readme",
+  "homepage": "https://github.com/nhu-tran1105/nana-devops#readme",
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "mongodb": "^7.0.0",
+    "mongodb": "^7.0.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.11"
   }
 }
