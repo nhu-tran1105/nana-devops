@@ -1,6 +1,6 @@
 # 🎮 Project QUEBEC
 
-**Author:** Nhu Tran 
+**Author:** Nhu Tran
 **Course:** CIS 486 — University of North Alabama (UNA)  
 **Professor:** Dr. Barry Cumbie
 
