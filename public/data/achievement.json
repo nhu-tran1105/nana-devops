@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "bi-award",
+    "title": "Dean's List",
+    "desc": "University of North Alabama"
+  },
+  {
+    "icon": "bi-code-slash",
+    "title": "HTML/CSS/JS Mastery",
+    "desc": "Advanced Proficiency"
+  },
+  {
+    "icon": "bi-bootstrap",
+    "title": "Bootstrap Expert",
+    "desc": "Responsive Design Specialist"
+  },
+  {
+    "icon": "bi-palette",
+    "title": "UI/UX Designer",
+    "desc": "Beautiful & User-Centered Interfaces"
+  },
+  {
+    "icon": "bi-trophy",
+    "title": "Top Student Award",
+    "desc": "CIS 376 – Fall 2025"
+  },
+  {
+    "icon": "bi-star-fill",
+    "title": "Perfect Attendance",
+    "desc": "Never missed a class!"
+  }
+]

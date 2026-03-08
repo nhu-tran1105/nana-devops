@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Project Alpha",
+    "desc": "Beautiful pastel-themed shopping experience",
+    "img": "image/projectAlpha.png",
+    "live": "https://nhu-tran1105.github.io/NhuTran/",
+    "code": "https://github.com/nhu-tran1105/NhuTran"
+  },
+  {
+    "title": "Personal Blog Design",
+    "desc": "Minimal blog with dark mode toggle",
+    "img": "image/projectBravo.png",
+    "live": "https://nhu-tran1105.github.io/Bravo/",
+    "code": "https://github.com/nhu-tran1105/Bravo"
+  },
+  {
+    "title": "Project Charlie",
+    "desc": "Elegant animated invitation with RSVP form",
+    "img": "image/projectCharlie.png",
+    "live": "https://kise1205.github.io/project-charlie/",
+    "code": "https://github.com/Kise1205/project-charlie"
+  },
+  {
+    "title": "Project Delta",
+    "desc": "Elegant animated invitation with RSVP form",
+    "img": "image/projectDelta.png",
+    "live": "https://nhu-tran1105.github.io/BetterDay/",
+    "code": "https://github.com/nhu-tran1105/BetterDay"
+  }
+]

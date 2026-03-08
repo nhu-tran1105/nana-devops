@@ -1,0 +1,7 @@
+[
+  {"title": "Responsive Web Design", "issuer": "freeCodeCamp", "year": "2025", "icon": "fas fa-mobile-alt"},
+  {"title": "JavaScript Algorithms", "issuer": "freeCodeCamp", "year": "2025", "icon": "fab fa-js"},
+  {"title": "SQL Server", "issuer": "CodeCademy", "year": "2023", "icon": "fa fa-database"},
+  {"title": "AAS Programming Using Java", "issuer": "Houston Community College", "year": "2021", "icon": "fab fa-java"},
+  {"title": "BS Information Technology (in progress)", "issuer": "University of North Alabama", "year": "2026", "icon": "fas fa-graduation-cap"}
+]
