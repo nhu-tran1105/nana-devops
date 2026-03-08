@@ -2,7 +2,7 @@ name: Deploy Main to GCP
 
 on:
   push:
-    branches: [devv]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
