@@ -12,13 +12,13 @@ const __dirname = dirname(__filename);
 // 1. GLOBAL MIDDLEWARE
 app.use(express.json());
 
-// 2. DEBUG LOGGER (Keep this high up to see all incoming traffic)
+// 2. DEBUG LOGGER 
 app.use((req, res, next) => {
   console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
   next();
 });
 
-// 3. API ROUTES (Define these BEFORE static files)
+// 3. API ROUTES 
 app.use('/nana/api', Routes);
 
 // 4. STATIC FILES (Only call this ONCE, after API routes)
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
-// 6. CATCH-ALL DEBUG (If it hits this, the route is definitely not working)
+// 6. CATCH-ALL DEBUG 
 app.use('/nana/api', (req, res) => {
   console.log(`⚠️ Alert: Request to ${req.url} fell through the Routes file!`);
   res.status(404).json({ error: "Route reached but not handled in Routes.js" });

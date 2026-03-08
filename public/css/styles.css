@@ -62,12 +62,11 @@ body {
     margin-bottom: 4rem;
 }
 
-/* ĐÂY LÀ PHẦN QUAN TRỌNG NHẤT ĐỂ HIỆN NẰM NGANG */
 #projectsContainer {
 display: grid;
-    /* Ép buộc chia làm 4 cột bằng nhau */
+   
     grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; /* Có thể giảm nhẹ gap để đủ chỗ cho 4 card */
+    gap: 20px; 
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -81,7 +80,7 @@ display: grid;
     box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
     transition: all 0.4s ease;
     display: flex;
-    flex-direction: column; /* Đảm bảo nội dung bên trong xếp dọc */
+    flex-direction: column; 
     height: 100%;
 }
 
@@ -101,7 +100,7 @@ display: grid;
     text-align: center;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Đẩy các nút xuống đáy card nếu mô tả ngắn */
+    flex-grow: 1; 
 }
 
 .project-card h3 {
@@ -121,7 +120,7 @@ display: grid;
 
 /* --- Buttons --- */
 .project-buttons {
-    margin-top: auto; /* Luôn nằm ở cuối card */
+    margin-top: auto;
     display: flex;
     gap: 0.8rem;
     justify-content: center;
@@ -155,7 +154,7 @@ display: grid;
 /* --- Responsive --- */
 @media (max-width: 768px) {
     #projectsContainer {
-        grid-template-columns: 1fr; /* 1 cột trên điện thoại */
+        grid-template-columns: 1fr; 
     }
     
     .hero h1 {

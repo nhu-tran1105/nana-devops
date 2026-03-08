@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!projectsContainer) return;
 
-  // Gọi API lấy dữ liệu dự án từ MongoDB
+
   fetch("/nana/api/projects")
     .then(response => {
       if (!response.ok) throw new Error("Network response was not ok");
       return response.json();
     })
     .then(data => {
-      projectsContainer.innerHTML = ""; // Xóa các nội dung cũ/placeholder
+      projectsContainer.innerHTML = ""; 
       
       data.forEach(project => {
-        // Cấu trúc card dựa trên data.json cũ: title, desc, img, live, code
+        
         projectsContainer.innerHTML += `
           <div class="project-card">
             <img src="${project.img}" alt="${project.title}" loading="lazy">
