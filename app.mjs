@@ -26,7 +26,7 @@ app.use(express.static(join(__dirname, 'public')));
 
 // 5. FRONTEND ENTRY POINT
 app.get('/', (req, res) => {
-  res.sendFile(join(__dirname,'index.html'));
+  res.sendFile(join(__dirname, 'public', 'index.html'));
 });
 
 // 6. CATCH-ALL DEBUG 
