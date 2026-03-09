@@ -2,7 +2,7 @@ name: Deploy Main to GCP
 
 on:
   push:
-    branches: [devv]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -14,10 +14,10 @@ jobs:
 
       - name: Prepare SSH
         run: |
-            mkdir -p ~/.ssh
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Deploy over SSH
         env:
@@ -29,7 +29,7 @@ jobs:
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -tt "$SSH_USER@$SSH_HOST" <<EOF
             set -e
             cd "$APP_DIR"
-            git pull origin devv  # CHANGED FROM 'main' TO 'devv'
+            git pull origin main
             npm install
             if pm2 list | grep -q "$PM2_NAME"; then
               pm2 restart "$PM2_NAME"
