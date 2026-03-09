@@ -17,7 +17,7 @@ This project is a full-stack web application developed as part of the **QUEBEC**
 The application is successfully deployed and accessible via the following links:
 
 * **Production (GCP + Custom Domain):** [https://nana.barrycumbie.com/](https://nana.barrycumbie.com/)
-* **Development (Render):** [https://quebec-cizi.onrender.com/](https://quebec-cizi.onrender.com/)
+* **Development (Render):** [(https://nana-devops-2.onrender.com)]
 * **Direct IP Access:** [(https://34.16.156.28/)]
 
 ---
