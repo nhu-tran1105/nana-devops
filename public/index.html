@@ -1,273 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIS 486 - Attendance Tracker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    h1, h2 {
-      color: #333;
-    }
-    .class-info {
-      background: #e8f4fd;
-      border-left: 4px solid #2196F3;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    input {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-    button {
-      background: #2196F3;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-right: 10px;
-    }
-    button:hover {
-      background: #1976D2;
-    }
-    .delete-btn {
-      background: #f44336;
-    }
-    .delete-btn:hover {
-      background: #d32f2f;
-    }
-    .edit-btn {
-      background: #ff9800;
-    }
-    .edit-btn:hover {
-      background: #f57c00;
-    }
-    .message {
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 4px;
-    }
-    .success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-    .error {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-    .record {
-      background: #f8f9fa;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 4px;
-      border: 1px solid #dee2e6;
-    }
-    #attendanceList {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nhu Tran • Front-End Developer</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link href="css/normalize.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Class Information Section -->
-  <div class="container class-info">
-    <h1>Class Information</h1>
-    <div id="classInfo">Loading class information...</div>
-  </div>
 
-  <!-- Attendance Form -->
-  <div class="container">
-    <h2>Student Attendance</h2>
-    <div id="message"></div>
-    
-    <form id="attendanceForm">
-      <div class="form-group">
-        <label for="studentName">Student Name:</label>
-        <input type="text" id="studentName" required>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">NT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reflection">Reflection</a></li>
+        </ul>
       </div>
-      
-      <div class="form-group">
-        <label for="date">Today's Date:</label>
-        <input type="text" id="date" required placeholder="February 3, 2026">
-      </div>
-      
-      <div class="form-group">
-        <label for="keyword">Keyword from Board:</label>
-        <input type="text" id="keyword" required>
-      </div>
-      
-      <button type="submit">Record Attendance</button>
-      <button type="button" onclick="loadAttendance()">Refresh List</button>
-    </form>
-  </div>
+    </div>
+  </nav>
 
-  <!-- Attendance Records -->
-  <div class="container">
-    <h2>Attendance Records</h2>
-    <div id="attendanceList">Loading attendance records...</div>
-  </div>
 
-  <script>
-    let editingId = null;
+  <section id="about" class="hero d-flex align-items-center">
+    <div class="container text-center">
+      <h1 class="display-1">Nhu Tran</h1>
+      <p class="subtitle">Front-End Developer • UI/UX Enthusiast</p>
+      <p class="location">Florence, Alabama</p>
+      <p class="bio">
+        Hi, I'm Nhu! I love turning beautiful ideas into clean, responsive code. 
+        When I'm not designing or coding, you'll find me trying new coffee shops, 
+        taking photos, or dreaming about my next travel adventure.
+      </p>
+    </div>
+  </section>
 
-    // Load class information on page load
-    async function loadClassInfo() {
-      try {
-        const response = await fetch('/api/class');
-        const classData = await response.json();
-        
-        document.getElementById('classInfo').innerHTML = `
-          <h3>${classData.courseNumber} - ${classData.courseName}</h3>
-          <p><strong>Nickname:</strong> ${classData.nickname}</p>
-          <p><strong>Semester:</strong> ${classData.semester}</p>
-          <p><strong>Calendar:</strong> ${classData.calendar}</p>
-        `;
-      } catch (error) {
-        document.getElementById('classInfo').innerHTML = 'Error loading class information';
-      }
-    }
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Latest Projects</h2>
+      <div id="projectsContainer" class="projects-grid"></div>
+    </div>
+  </section>
 
-    // Handle form submission
-    document.getElementById('attendanceForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const studentName = document.getElementById('studentName').value;
-      const date = document.getElementById('date').value;
-      const keyword = document.getElementById('keyword').value;
 
-      try {
-        const url = editingId ? `/api/attendance/${editingId}` : '/api/attendance';
-        const method = editingId ? 'PUT' : 'POST';
-        
-        const response = await fetch(url, {
-          method: method,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            studentName,
-            date,
-            keyword
-          })
-        });
-
-        const result = await response.json();
-        
-        if (response.ok) {
-          showMessage(result.message, 'success');
-          document.getElementById('attendanceForm').reset();
-          if (editingId) {
-            editingId = null;
-            document.querySelector('button[type="submit"]').textContent = 'Record Attendance';
-          }
-          loadAttendance();
-        } else {
-          showMessage(result.error, 'error');
-        }
-      } catch (error) {
-        showMessage('Error submitting form', 'error');
-      }
-    });
-
-    // Load attendance records
-    async function loadAttendance() {
-      try {
-        const response = await fetch('/api/attendance');
-        const records = await response.json();
-        
-        const listDiv = document.getElementById('attendanceList');
-        
-        if (records.length === 0) {
-          listDiv.innerHTML = '<p>No attendance records yet.</p>';
-          return;
-        }
-
-        listDiv.innerHTML = records.map(record => `
-          <div class="record">
-            <strong>${record.studentName}</strong> - ${record.date}<br>
-            <small>Keyword: ${record.keyword} | Recorded: ${new Date(record.timestamp).toLocaleString()}</small><br>
-            <button class="edit-btn" onclick="editRecord('${record._id}', '${record.studentName}', '${record.date}', '${record.keyword}')">Edit</button>
-            <button class="delete-btn" onclick="deleteRecord('${record._id}')">Delete</button>
+  <section id="achievements" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Achievements & Skills</h2>
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4">
+        <div class="col text-center">
+          <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <i class="bi bi-award fs-1 text-pink mb-3"></i>
+            <p class="mt-2 fw-bold mb-1">Dean's List</p>
+            <small class="text-muted">University of North Alabama</small>
           </div>
-        `).join('');
-      } catch (error) {
-        document.getElementById('attendanceList').innerHTML = 'Error loading attendance records';
-      }
-    }
+        </div>
+        <div class="col text-center">
+          <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <i class="bi bi-code-slash fs-1 text-pink mb-3"></i>
+            <p class="mt-2 fw-bold mb-1">HTML/CSS/JS Mastery</p>
+            <small class="text-muted">Advanced Proficiency</small>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <i class="bi bi-bootstrap fs-1 text-pink mb-3"></i>
+            <p class="mt-2 fw-bold mb-1">Bootstrap Expert</p>
+            <small class="text-muted">Responsive Design Specialist</small>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <i class="bi bi-palette fs-1 text-pink mb-3"></i>
+            <p class="mt-2 fw-bold mb-1">UI/UX Designer</p>
+            <small class="text-muted">Beautiful & User-Centered Interfaces</small>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <i class="bi bi-trophy fs-1 text-pink mb-3"></i>
+            <p class="mt-2 fw-bold mb-1">Top Student</p>
+            <small class="text-muted">CIS 376 Award</small>
+          </div>
+        </div>
+        <div class="col text-center">
+          <div class="p-4 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <i class="bi bi-star-fill fs-1 text-pink mb-3"></i>
+            <p class="mt-2 fw-bold mb-1">Perfect Attendance</p>
+            <small class="text-muted">Never missed a class!</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    // Edit record
-    function editRecord(id, studentName, date, keyword) {
-      editingId = id;
-      document.getElementById('studentName').value = studentName;
-      document.getElementById('date').value = date;
-      document.getElementById('keyword').value = keyword;
-      document.querySelector('button[type="submit"]').textContent = 'Update Attendance';
-      showMessage('Editing record - click Update to save changes', 'success');
-    }
+  <section id="reflection" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Knowledge Reflection</h2>
+      <div class="reflection-card p-4 bg-white shadow-sm rounded mx-auto" style="max-width: 800px;">
+        <h4 class="mb-3 text-pink">Course: CIS 376 – Web Development</h4>
+        <p class="mb-2"><strong>Instructor:</strong> Dr. Barry Cumbie</p>
+        <p>This portfolio, titled <strong>Echo</strong>, represents my journey in developing clean, intentional, and aesthetic web spaces. Everything you see here is hand-coded using vanilla technologies, emphasizing semantic HTML and modern CSS layout techniques. Through this project, I've learned to balance visual storytelling with technical performance.</p>
+      </div>
+    </div>
+  </section>
 
-    // Delete record
-    async function deleteRecord(id) {
-      if (!confirm('Are you sure you want to delete this record?')) return;
-      
-      try {
-        const response = await fetch(`/api/attendance/${id}`, {
-          method: 'DELETE'
-        });
+<section class="container my-5">
+    <div class="card p-4 shadow-sm">
+        <h3 class="text-pink">Add Projects</h3>
+        <form id="projectForm" class="row g-3">
+            <input type="hidden" id="editId"> <div class="col-md-4">
+                <input type="text" id="title" class="form-control" placeholder="Project Title" required>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="img" class="form-control" placeholder="Image URL">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" id="submitBtn" class="btn btn-primary w-100">Add Project</button>
+            </div>
+            <div class="col-12">
+                <textarea id="desc" class="form-control" placeholder="Description"></textarea>
+            </div>
+        </form>
+    </div>
+</section>
 
-        const result = await response.json();
-        
-        if (response.ok) {
-          showMessage(result.message, 'success');
-          loadAttendance();
-        } else {
-          showMessage(result.error, 'error');
-        }
-      } catch (error) {
-        showMessage('Error deleting record', 'error');
-      }
-    }
+<div id="projectsContainer" class="row"></div>
 
-    // Show message
-    function showMessage(text, type) {
-      const messageDiv = document.getElementById('message');
-      messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
-      setTimeout(() => {
-        messageDiv.innerHTML = '';
-      }, 3000);
-    }
+<div id="projectsContainer" class="project-grid"></div>
 
-    // Initialize page
-    loadClassInfo();
-    loadAttendance();
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p class="mb-3">© 2025 Nhu Tran • Built with love &amp; vanilla code</p>
+      <div class="validation-links">
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fnhu-tran1105.github.io%2FEcho%2F" target="_blank" class="val-link">Nu HTML Checker</a>
+        <span class="separator">•</span>
+        <a href="https://wave.webaim.org/report#/https://nhu-tran1105.github.io/Echo/" target="_blank" class="val-link">WAVE Accessibility</a>
+        <span class="separator">•</span>
+        <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fnhu-tran.github.io%2F" target="_blank" class="val-link">Lighthouse Report</a>
+      </div>
+    </div>
+  </footer>
 
-    // Set today's date as default
-    document.getElementById('date').value = 'February 3, 2026';
-  </script>
+
+  <script src="js/scripts.js"></script>
 </body>
 </html>
