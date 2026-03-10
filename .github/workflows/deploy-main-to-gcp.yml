@@ -26,11 +26,16 @@ jobs:
           APP_DIR:  ${{ vars.APP_DIR }}
           PM2_NAME: ${{ vars.PM2_NAME }}
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -tt "$SSH_USER@$SSH_HOST" <<EOF
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" << 'EOF'
             set -e
             cd "$APP_DIR"
-            git pull origin devv  # CHANGED FROM 'main' TO 'devv'
-            npm install
+            
+            git fetch origin devv
+            
+            git reset --hard origin/devv
+            
+            npm install --omit=dev
+            
             if pm2 list | grep -q "$PM2_NAME"; then
               pm2 restart "$PM2_NAME"
             else
