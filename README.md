@@ -71,5 +71,4 @@ To run this project on your local machine, follow these steps:
 
 > *“Design is not just what it looks like and feels like. Design is how it works.”* — Steve Jobs
 
-**Made with 💖 in Florence, Alabama • 2026**
 
