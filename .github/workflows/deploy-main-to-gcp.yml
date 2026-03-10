@@ -14,32 +14,32 @@ jobs:
 
       - name: Prepare SSH
         run: |
-            mkdir -p ~/.ssh
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy over SSH
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
-          APP_DIR:  ${{ vars.APP_DIR }}
+          # Khuyên dùng biến để dễ quản lý thay vì ghi cứng tên app
           PM2_NAME: ${{ vars.PM2_NAME }}
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" << 'EOF'
             set -e
-            cd "$APP_DIR"
+            
+            cd /home/quynhnhutran987/nana-devops || { echo "Directory not found"; exit 1; }
             
             git fetch origin devv
-            
             git reset --hard origin/devv
             
-            npm install --omit=dev
-            
-            if pm2 list | grep -q "$PM2_NAME"; then
-              pm2 restart "$PM2_NAME"
-            else
-              pm2 start app.mjs --name "$PM2_NAME"
-            fi
+            rm -rf node_modules
+            npm install --production --no-audit --no-fund
+        
+            pm2 delete "$PM2_NAME" || true
+            pm2 start app.mjs --name "$PM2_NAME"
             pm2 save
+            
+            echo "Done!"
           EOF
